@@ -1,5 +1,6 @@
 
 const {mutipleMongooseToObject} = require('../../../util/mongoose');
+const {getHost} = require('../../../util/getHost');
 
 const Playlist = require('../../models/Playlist');
 const Category = require('../../models/Category');
@@ -26,7 +27,8 @@ class InsertPlaylistController {
     // [POST] /insertPlaylistPost 
     insertPlaylistPost(req, res){
         console.log('req.body.categoryId : ' + req.body.categoryId);
-        req.body.image = req.protocol + '://' + req.headers.host + '/image/imageplaylist/' + req.file.filename;
+        req.body.image = req.protocol + '://' + getHost(req) + '/image/imageplaylist/' + req.file.filename;
+        // req.body.image = req.protocol + '://' + req.headers.host + '/image/imageplaylist/' + req.file.filename;
         Category.findOne({_id: req.body.categoryId}, function (err, category) {
             req.body.category = category; 
             const playlist = new Playlist(req.body);

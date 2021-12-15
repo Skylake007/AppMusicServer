@@ -9,6 +9,7 @@ const {mutipleMongooseToObject} = require('../../util/mongoose');
 const {mongooseToObject} = require('../../util/mongoose');
 const {removeNewObjectID} = require('../../util/RemoveNewObjectID');
 const {getFileName} = require('../../util/getFileNameFromLink');
+const {getHost} = require('../../util/getHost');
 
 // delete file
 const {deleteSong} = require('../../util/deleteFile');
@@ -128,7 +129,8 @@ class ManageController {
             if(req.body.idSong){
                 const song = await Song.findById(req.body.idSong);
                 if(song){
-                    req.body.image = req.protocol + '://' + req.headers.host + '/image/imageSong/' + req.file.filename;
+                    // req.body.image = req.protocol + '://' + req.headers.host + '/image/imageSong/' + req.file.filename;
+                    req.body.image = req.protocol + '://' + getHost(req) + '/image/imageSong/' + req.file.filename;
                     Song.updateOne({_id: song._id}, req.body)
                         .then(function (){ // delete old image after update new image
                             const fileSongImage = getFileName(song.image);
@@ -343,7 +345,8 @@ class ManageController {
             if(req.body.idAlbum){
                 const album = await Album.findById(req.body.idAlbum);
                 if(album){
-                    req.body.imageAlbum = req.protocol + '://' + req.headers.host + '/image/imageAlbum/' + req.file.filename;
+                    // req.body.imageAlbum = req.protocol + '://' + req.headers.host + '/image/imageAlbum/' + req.file.filename;
+                    req.body.imageAlbum = req.protocol + '://' + getHost(req) + '/image/imageAlbum/' + req.file.filename;
                     Album.updateOne({_id: album._id}, req.body)
                         .then(function (){ // delete old image after update new image
                             const fileAlbumImage = getFileName(album.imageAlbum);
@@ -466,7 +469,8 @@ class ManageController {
             if(req.body.idSinger){
                 const singer = await Singer.findById(req.body.idSinger);
                 if(singer){
-                    req.body.image = req.protocol + '://' + req.headers.host + '/image/imageSinger/' + req.file.filename;
+                    // req.body.image = req.protocol + '://' + req.headers.host + '/image/imageSinger/' + req.file.filename;
+                    req.body.image = req.protocol + '://' + getHost(req) + '/image/imageSinger/' + req.file.filename;
                     Singer.updateOne({_id: singer._id}, req.body)
                         .then(function (){ // delete old image after update new image
                             const fileSingerImage = getFileName(singer.image);
@@ -590,7 +594,8 @@ class ManageController {
             if(req.body.idPlaylist){
                 const playlist = await Playlist.findById(req.body.idPlaylist);
                 if(playlist){
-                    req.body.image = req.protocol + '://' + req.headers.host + '/image/imagePlaylist/' + req.file.filename;
+                    // req.body.image = req.protocol + '://' + req.headers.host + '/image/imagePlaylist/' + req.file.filename;
+                    req.body.image = req.protocol + '://' + getHost(req) + '/image/imagePlaylist/' + req.file.filename;
                     Playlist.updateOne({_id: playlist._id}, req.body)
                         .then(function (){ // delete old image after update new image
                             const filePlaylistImage = getFileName(playlist.image);
@@ -712,7 +717,8 @@ class ManageController {
             if(req.body.idCategory){
                 const category = await Category.findById(req.body.idCategory);
                 if(category){
-                    req.body.imageCategory = req.protocol + '://' + req.headers.host + '/image/imageCategory/' + req.file.filename;
+                    // req.body.imageCategory = req.protocol + '://' + req.headers.host + '/image/imageCategory/' + req.file.filename;
+                    req.body.imageCategory = req.protocol + '://' + getHost(req) + '/image/imageCategory/' + req.file.filename;
                     Category.updateOne({_id: category._id}, req.body)
                         .then(function (){ // delete old image after update new image
                             const fileCategoryImage = getFileName(category.imageCategory);
