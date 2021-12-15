@@ -1,5 +1,6 @@
 
 const {mutipleMongooseToObject} = require('../../../util/mongoose');
+const {getHost} = require('../../../util/getHost');
 const Category = require('../../models/Category');
 
 class InsertCategoryController {
@@ -18,7 +19,8 @@ class InsertCategoryController {
     // [POST] /insertCategoryPost 
     insertCategoryPost(req, res){
         // console.log(req.file)
-        req.body.imageCategory =  req.protocol + '://' + req.headers.host + '/image/imagecategory/' + req.file.filename;
+        req.body.imageCategory =  req.protocol + '://' + getHost(req) + '/image/imagecategory/' + req.file.filename;
+        // req.body.imageCategory =  req.protocol + '://' + req.headers.host + '/image/imagecategory/' + req.file.filename;
         const category = new Category(req.body);
         category.save()
                 .then(function(){

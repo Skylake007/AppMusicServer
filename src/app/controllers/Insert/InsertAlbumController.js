@@ -3,6 +3,7 @@ const Album = require('../../models/Album');
 const Singer = require('../../models/Singer');
 const Category = require('../../models/Category');
 const {mutipleMongooseToObject} = require('../../../util/mongoose');
+const {getHost} = require('../../../util/getHost');
 class InsertAlbumController {
 
     // [GET] insert/insertAlbum 
@@ -33,7 +34,8 @@ class InsertAlbumController {
 
         const singer = await Singer.findOne({_id: req.body.singerId});
 
-        req.body.imageAlbum = req.protocol + '://' + req.headers.host + '/image/imagealbum/' + req.file.filename;
+        req.body.imageAlbum = req.protocol + '://' + getHost(req) + '/image/imagealbum/' + req.file.filename;
+        // req.body.imageAlbum = req.protocol + '://' + req.headers.host + '/image/imagealbum/' + req.file.filename;
         req.body.singer = singer;
 
         console.log(req.body.singer)

@@ -1,5 +1,6 @@
 
 const {mutipleMongooseToObject} = require('../../../util/mongoose');
+const {getHost} = require('../../../util/getHost');
 
 const Song = require('../../models/Song');
 const Category = require('../../models/Category');
@@ -42,8 +43,10 @@ class InsertSongController {
             req.body.singer = singers;
             req.body.playlistid = req.body.playlistId;
             req.body.albumid = req.body.albumId;
-            req.body.image = req.protocol + '://' + req.headers.host + '/image/imageSong/' + req.files[0].filename;
-            req.body.link = req.protocol + '://' + req.headers.host + '/streamsong/' + req.files[1].filename;
+            req.body.image = req.protocol + '://' + getHost(req) + '/image/imageSong/' + req.files[0].filename;
+            // req.body.image = req.protocol + '://' + req.headers.host + '/image/imageSong/' + req.files[0].filename;
+            // req.body.link = req.protocol + '://' + req.headers.host + '/streamsong/' + req.files[1].filename;
+            req.body.link = req.protocol + '://' + getHost(req) + '/streamsong/' + req.files[1].filename;
 
             const song = new Song(req.body);
             song.save()
