@@ -29,7 +29,7 @@ class AdminController {
     async getListSinger(req, res){
         try {
             if(!req.body.singerIds){
-                res.json({ error: true, message: 'Hãy nhập singer ID', note:'' });
+                res.json({ error: true, message: 'Chưa có ca sĩ yêu thích', note:'' });
             }
             else{
                 const singerIds = req.body.singerIds;
