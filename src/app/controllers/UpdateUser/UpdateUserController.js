@@ -162,7 +162,7 @@ class UpdateUserController{
                                         // }
                                         else {
                                             User.findOne({ _id: userId }).exec(function(err, user){
-                                                res.json({ error: false, message: 'Đã thêm vào playlist ưa thích', user});
+                                                res.json({ error: false, message: 'Đã thêm vào album ưa thích', user});
                                             });
                                         }
                                     });
@@ -177,7 +177,7 @@ class UpdateUserController{
                                 res.json({ error: true, message: 'Người dùng không tồn tại' });
                             }else {
                                 User.findOne({ _id: userId }).exec(function(err, user){
-                                    res.json({ error: false, message: 'Đã xóa khỏi playlist ưa thích', user});
+                                    res.json({ error: false, message: 'Đã xóa khỏi album ưa thích', user});
                                 });
                             }
                         });
@@ -206,7 +206,7 @@ class UpdateUserController{
                         if(err) res.json({ error: true, message: err.message });
                         else{
                             const user = await User.findById(req.query.userid); // return new update user to json
-                            res.json({ error:false, message: 'Đã xóa ca sĩ khỏi danh sách ca sĩ ưa thích', user });
+                            res.json({ error:false, message: 'Đã xóa khỏi danh sách ca sĩ ưa thích', user });
                         }
                     });
                 }else{
@@ -240,7 +240,7 @@ class UpdateUserController{
                         if(err) res.json({ error: true, message: err.message });
                         else{
                             const user = await User.findById(req.query.userid); // return new update user to json
-                            res.json({ error:false, message: 'Đã thêm ca sĩ vào danh sách ca sĩ ưa thích', user });
+                            res.json({ error:false, message: 'Đã thêm vào danh sách ca sĩ ưa thích', user });
                         }
                     });
                 }else{
