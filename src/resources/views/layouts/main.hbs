@@ -5,15 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <title>Webservice App Nghe Nhạc</title>
+
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
 </head>
 <body>
 
 {{#if isLogin}}
     <div>
-        <a href="/">Thêm mới</a>
-        <a href="/manage">Quản lý</a>
-        <a href="/admin/logout">đăng xuất</a>
+        <ul>
+            <li><a href="/">Thêm mới</a></li>
+            <li><a href="/manage">Quản lý</a></li>
+            <li><a href="/admin/logout">Đăng xuất</a></li>
+        </ul>
+        
     </div>
 {{/if}}
     <div>
