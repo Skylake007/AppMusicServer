@@ -51,6 +51,12 @@
                 <label class="form-check-label" for="{{this._id}}"> {{this.albumname}} </label>
             </div>
         {{/each}}
+        <div class="form-group">
+            <label for="lyric">Lời bài hát</label>
+            <textarea rows="9" cols="70" name="lyric" class="form-control col-lg-6" id="lyric">
+                {{song.lyric}}
+            </textarea>
+        </div>
 
         <button type="submit" class="btn btn-primary">sửa bài hát</button>
         <a href="/manage/Song" class="btn btn-primary">Trở lại</a>

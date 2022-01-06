@@ -11,7 +11,8 @@ const Song = new Schema({
     category: [Category],
     singer: [Singer],
     playlistid: [String],
-    albumid: [String]
+    albumid: [String],
+    lyric: String
 }, 
     {
         versionKey: false,
