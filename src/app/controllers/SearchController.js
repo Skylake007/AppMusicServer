@@ -57,9 +57,28 @@ class SearchController{
                 res.json({ error:true, message: 'Không có tham số truyền vào' });
             }else{
                 const text = req.query.q;
+                
                 // const singerIds = await Singer.find({$text: {$search: text}}, '_id');
                 const singers = await getModel(SingerModel,text);
-                if(singers.length != 0){ // found singer
+                if(text.length > 15) {
+                    const songs2 = await Song.find({$text: {$search: '\"'+text+'\""'}});
+                    const songs = await Song.find({$text: {$search: text}});
+                    if (songs2.length != 0) {
+                        res.json({
+                            error: false,  
+                            message: '',
+                            listSong: songs2
+                        }) 
+                    }
+                    else {
+                        res.json({
+                            error: false,  
+                            message: '',
+                            listSong: songs
+                        }) 
+                    }
+                }
+                else if(singers.length != 0){ // found singer
                     const singers = await getModel(SingerModel,text); // list singer
                     const listsong1 = await getModel(SongModel,text); // this listsong is found from req.query.q
                     // const listsong2 = await Song.find({'singer._id': {$in: singerIds}}); // this listsong is found from singerID
@@ -72,8 +91,10 @@ class SearchController{
                             listSong: listsong1
                         });
                     }else{ // if 2 list which get from atlas search is empty => use full text search to find it
+                        
                         const singers = await Singer.find({$text: {$search: text}});
                         const listSong = await Song.find({$text: {$search: text}});
+
                         if(singers.length != 0 || listSong.length != 0){
                             res.json({
                                 error: false,  
@@ -94,7 +115,19 @@ class SearchController{
                             listSong
                         });
                     }else{ //if listsong which get from atlas search is empty => use full text search to find it
+                        // const songs2 = await Song.find({$text: {$search: '"\'"'+text+'\""'}});
                         const songs = await Song.find({$text: {$search: text}});
+                        
+                        // console.log(songs2)
+                        // console.log(songs)
+                        
+                        // if (songs2.length != 0) {
+                        //     res.json({
+                        //         error: false,  
+                        //         message: '',
+                        //         listSong: songs2
+                        //     }) 
+                        // }
                         if(songs.length != 0){
                             res.json({
                                 error: false,  
