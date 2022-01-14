@@ -22,7 +22,7 @@ const Song = new Schema({
     }
 );
 
-Song.index({title : 'text', lyric : 'text'}); // create index for searching/
-Singer.index({singername: 'text'});
+// Song.index({title : 'text', lyric : 'text'}); // create index for searching/
+// Singer.index({singername: 'text'});
 
 module.exports = Song;

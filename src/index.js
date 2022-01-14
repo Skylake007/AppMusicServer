@@ -12,6 +12,7 @@ const route = require('./routes');
 
 const app = express();
 const port = 3000;
+// const port = process.ENV.PORT || 3000
 
 //session
 const oneDay = 1000 * 60 * 60 * 24;
